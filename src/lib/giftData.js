@@ -30,7 +30,7 @@ export const DEFAULT_GIFT = {
     { src: '/photos/photo-4.jpg', caption: 'Forever' },
     { src: '/photos/photo-5.jpg', caption: 'Always' },
   ],
-  music: '',
+  music: 'https://youtu.be/75-Com9Bo_s',
 }
 
 const DRAFT_KEY = 'girlfriend-day-draft-v1'
