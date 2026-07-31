@@ -23,7 +23,13 @@ export const DEFAULT_GIFT = {
     { year: '2024', title: 'Our First Date', text: 'You laughed at my terrible joke and suddenly I knew. It was never a question.' },
     { year: '2025', title: 'Today', text: 'Still you. Still me. Still hopelessly yours.' },
   ],
-  photos: [],
+  photos: [
+    { src: '/photos/photo-1.jpg', caption: 'Us ♥' },
+    { src: '/photos/photo-2.jpg', caption: 'You + me' },
+    { src: '/photos/photo-3.jpg', caption: 'My favorite' },
+    { src: '/photos/photo-4.jpg', caption: 'Forever' },
+    { src: '/photos/photo-5.jpg', caption: 'Always' },
+  ],
   music: '',
 }
 
