@@ -1,0 +1,334 @@
+@import "tailwindcss";
+
+@theme {
+  --font-pixel: "VT323", ui-monospace, monospace;
+  --font-pixelbody: "Pixelify Sans", ui-monospace, monospace;
+
+  --color-night: #a1eafb;
+  --color-night2: #fdfdfd;
+  --color-panel: #cabbe9;
+  --color-panel2: #b9a2dd;
+  --color-pink: #ffcef3;
+  --color-hot: #e0526d;
+  --color-cyan: #0e8cbf;
+  --color-gold: #7c5fbf;
+  --color-lime: #a1eafb;
+  --color-sun: #ffcef3;
+  --color-crimson: #e0526d;
+  --color-plum: #4a2e6b;
+}
+
+* {
+  image-rendering: pixelated;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.55), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(202, 187, 233, 0.45), transparent 45%),
+    linear-gradient(180deg, #a1eafb 0%, #d8f3fd 55%, #fdfdfd 100%);
+  background-attachment: fixed;
+  color: var(--color-plum);
+  font-family: var(--font-pixelbody);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-hot);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
+  background: #a1eafb;
+}
+::-webkit-scrollbar-thumb {
+  background: #cabbe9;
+  border: 3px solid #a1eafb;
+}
+
+/* ---- Chunky pixel panel ---- */
+.pixel-panel {
+  background: var(--color-panel);
+  border: 4px solid #000;
+  box-shadow:
+    inset 0 0 0 3px var(--color-panel2),
+    inset 0 0 0 7px rgba(0, 0, 0, 0.18),
+    0 8px 0 0 rgba(0, 0, 0, 0.22);
+}
+
+.pixel-panel-accent {
+  border-color: #e0526d;
+  box-shadow:
+    inset 0 0 0 3px var(--color-panel2),
+    0 8px 0 0 rgba(0, 0, 0, 0.22);
+}
+
+.pixel-panel-dark {
+  background: var(--color-night2);
+  border: 4px solid #000;
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.18), 0 6px 0 0 rgba(0, 0, 0, 0.18);
+}
+
+/* ---- Chunky pixel button ---- */
+.pixel-btn {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.5px;
+  border: 4px solid #000;
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.28);
+  transition:
+    transform 0.05s linear,
+    box-shadow 0.05s linear,
+    filter 0.1s linear;
+  cursor: pointer;
+  user-select: none;
+  color: var(--color-plum);
+}
+.pixel-btn:hover {
+  filter: brightness(1.05);
+}
+.pixel-btn:active {
+  transform: translateY(5px);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.28);
+}
+.pixel-btn:disabled {
+  filter: grayscale(0.8) brightness(0.9);
+  cursor: not-allowed;
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.28);
+}
+
+.pixel-btn-pink {
+  background: #ffcef3;
+}
+.pixel-btn-cyan {
+  background: #a1eafb;
+}
+.pixel-btn-gold {
+  background: #cabbe9;
+}
+.pixel-btn-lime {
+  background: #fdfdfd;
+}
+.pixel-btn-purple {
+  background: #cabbe9;
+}
+.pixel-btn-hot {
+  background: #e0526d;
+  color: #fff;
+}
+
+/* ---- Inputs ---- */
+.pixel-input {
+  width: 100%;
+  background: var(--color-night2);
+  border: 3px solid #000;
+  outline: 3px solid var(--color-panel2);
+  color: var(--color-plum);
+  font-family: var(--font-pixelbody);
+  font-size: 16px;
+  padding: 10px 12px;
+  transition: outline-color 0.1s linear;
+}
+.pixel-input:focus {
+  outline-color: var(--color-hot);
+  border-color: var(--color-hot);
+}
+.pixel-input::placeholder {
+  color: rgba(74, 46, 107, 0.35);
+}
+.pixel-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+/* ---- Pixel heart ---- */
+.pixel-heart {
+  display: inline-block;
+  shape-rendering: crispEdges;
+  filter: drop-shadow(1px 1px 0 rgba(74, 46, 107, 0.4));
+}
+
+/* ---- Scanlines overlay ---- */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(74, 46, 107, 0.06) 0px,
+    rgba(74, 46, 107, 0.06) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+/* ---- Twinkling stars ---- */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fdfdfd;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+
+/* ---- Floating hearts ---- */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-115vh) translateX(var(--drift)) rotate(25deg);
+    opacity: 0;
+  }
+}
+.float-heart {
+  position: absolute;
+  bottom: -40px;
+  animation: floatUp var(--dur) linear infinite;
+  animation-delay: var(--delay);
+  left: var(--left);
+  opacity: 0;
+}
+
+/* ---- Retro marquee ---- */
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee var(--speed, 22s) linear infinite;
+  will-change: transform;
+}
+
+/* ---- Blink ---- */
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ---- Heartbeat pulse ---- */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.12);
+  }
+  40% {
+    transform: scale(0.98);
+  }
+  60% {
+    transform: scale(1.14);
+  }
+  75% {
+    transform: scale(1);
+  }
+}
+.heartbeat {
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+/* ---- Screen shake (surprise reveal) ---- */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-6px, 3px);
+  }
+  20% {
+    transform: translate(6px, -3px);
+  }
+  30% {
+    transform: translate(-5px, -5px);
+  }
+  40% {
+    transform: translate(5px, 5px);
+  }
+  50% {
+    transform: translate(-4px, 2px);
+  }
+  60% {
+    transform: translate(4px, -2px);
+  }
+  70% {
+    transform: translate(-3px, 3px);
+  }
+  80% {
+    transform: translate(3px, -3px);
+  }
+}
+.screen-shake {
+  animation: shake 0.6s ease-in-out;
+}
+
+/* ---- Typewriter caret ---- */
+.caret::after {
+  content: "▮";
+  color: var(--color-hot);
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+/* ---- Pixel avatar/frame ---- */
+.pixel-photo {
+  image-rendering: pixelated;
+  border: 4px solid #000;
+  outline: 4px solid var(--color-panel2);
+  filter: contrast(1.05) saturate(1.05);
+}
+
+/* ---- Reveal glow ---- */
+@keyframes glowPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 6px rgba(224, 82, 109, 0.55), 0 0 18px rgba(124, 95, 191, 0.55);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(224, 82, 109, 0.9), 0 0 30px rgba(124, 95, 191, 0.75);
+  }
+}
+.glow-pulse {
+  animation: glowPulse 1.6s ease-in-out infinite;
+}
